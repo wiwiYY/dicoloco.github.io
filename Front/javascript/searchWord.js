@@ -1,6 +1,7 @@
 /* Variable globale pour incrémenter le nb d'élément d'une liste pour aider à créé les balises html*/
 let numSyn = 0;
 var url = "https://dicoloco.cfapps.io/word/";
+var urlpre = "https://dicoloco.cfapps.io/";
 /**
  * Recherche un mot
  */
@@ -412,7 +413,7 @@ function defNameGenerator() {
     if (username != null) {
         
         //Envoi de la requete HTTP
-        xhttp.open("GET", "http://localhost:8080/login/" +username, true);
+        xhttp.open("GET", urlpre+"login/" +username, true);
         xhttp.responseType = 'json';
         xhttp.send();
         var user;
