@@ -1,6 +1,6 @@
 /* Variable globale pour incrémenter le nb d'élément d'une liste pour aider à créé les balises html*/
 let numSyn = 0;
-
+var url = "https://dicoloco.cfapps.io/word/";
 /**
  * Recherche un mot
  */
@@ -10,7 +10,7 @@ function searchWord() {
     var name = document.getElementById("name").value;
 
     if (name != "") {
-        var requestURL = "http://localhost:8080/word/search/" + name;
+        var requestURL = url+"search/" + name;
         var request = new XMLHttpRequest();
 
         // Supprimer le html pour le reload plus tard
@@ -47,7 +47,7 @@ function searchWord() {
  * @param {wordName} name 
  */
 function searchSugg(name) {
-    var requestURL = "http://localhost:8080/word/searchSuggestion/" + name;
+    var requestURL = url+"searchSuggestion/" + name;
     var request = new XMLHttpRequest();
     request.open('GET', requestURL);
     request.responseType = 'json';
@@ -95,7 +95,7 @@ function searchWord2(numSyn) {
     // Supprimer le html pour le reload plus tard
     var toHideSection = document.getElementById('toHideSection');
     toHideSection.remove();
-    var requestURL = "http://localhost:8080/word/search/" + name2;
+    var requestURL = url+"search/" + name2;
     var request2 = new XMLHttpRequest();
     request2.open('GET', requestURL);
     request2.responseType = 'json';
@@ -124,7 +124,7 @@ function searchWord3(word) {
         var toHideSuggestion = document.getElementById('toHideSuggestion');
         toHideSuggestion.remove();
     }
-    var requestURL = "http://localhost:8080/word/search/" + element;
+    var requestURL = url+"search/" + element;
     var request2 = new XMLHttpRequest();
     request2.open('GET', requestURL);
     request2.responseType = 'json';
@@ -152,7 +152,7 @@ function searchWord4(number) {
         var toHideSuggestion = document.getElementById('toHideSuggestion');
         toHideSuggestion.remove();
     }
-    var requestURL = "http://localhost:8080/word/search/" + suggestionSelected;
+    var requestURL = url+"search/" + suggestionSelected;
     var request2 = new XMLHttpRequest();
     request2.open('GET', requestURL);
     request2.responseType = 'json';
