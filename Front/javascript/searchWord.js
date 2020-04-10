@@ -1,7 +1,7 @@
 /* Variable globale pour incrémenter le nb d'élément d'une liste pour aider à créé les balises html*/
 let numSyn = 0;
-var url = "https://dicoloco.cfapps.io/word/";
-var urlpre = "https://dicoloco.cfapps.io/";
+var url = "https://dicoloco.cfapps.io//word/";
+var urlpre = "https://dicoloco.cfapps.io//";
 /**
  * Recherche un mot
  */
