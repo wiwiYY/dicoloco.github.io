@@ -13,6 +13,7 @@ function loginAction() { 
     var username = document.getElementById("username").value;
 
     if (username != "") {
+        startLoading();
         /* Envoi de la requete HTTP */
         xhttp.open("GET", urlAPI + "/login/" +username, true);
         xhttp.responseType = 'json';
@@ -25,20 +26,36 @@ function loginAction() { 
             if (user != null) {
                 alert("Succès : Utilisateur valide. Vous allez etre rediriger vers la page d'Accueil.")
                 var size = taille(user);
-                setUser(user);
-                redirectAccueilPage();
-                generateHtmlLogin();
+                var beforeUser = localStorage.getItem('UserName');
+
+                /* Vérifie si l'user se connecte à son 2ème compte sans s'etre deconnecte 
+                 * Exemple : User se connecte à son compte 1, puis se connecte à son compte 2 sans avoir cliquer sur le bouton de Déconnexion avant 
+                 */
+                if (beforeUser != "") {
+                    setUser(user);
+                    redirectAccueilPage();
+                    generateHtmlLoginNoLogout();
+                }
+                else {
+                    setUser(user);
+                    redirectAccueilPage();
+                    generateHtmlLogin();
+                }
+                
             } else {
                 alert("Erreur : le nom de cet utilisateur n'existe pas ! Veuillez entrer un nom valide.")
             }
         }
+        endLoading();
     } else {
         alert("Connexion : Veuillez entrer un nom d'utilisateur");
     }
 	
 }
 
-/* Genere le HTML selon l'utilisateur connecte de la page dicoloco_accueil.html */
+/* Genere le HTML selon l'utilisateur connecte de la page dicoloco_accueil.html
+ * Exemple : User se connecte à son compte 1, puis se connecte à son compte 2 sans avoir cliquer sur le bouton de Déconnexion avant 
+ */
 function generateHtmlLogin() {
     /* Recupere les donnees de l'utilisateur qui se trouve dans le LocalStorage */
     var UserName = localStorage.getItem('UserName');
@@ -47,6 +64,19 @@ function generateHtmlLogin() {
     if (UserName != null) {
     	document.querySelector("#Name").innerHTML = UserName;
         deconnexionGenerator();
+        favoritesListInterfaceGenerator();
+        favoritesGenerator();
+    } 
+}
+
+/* Genere le HTML selon l'utilisateur connecte de la page dicoloco_accueil.html */
+function generateHtmlLoginNoLogout() {
+    /* Recupere les donnees de l'utilisateur qui se trouve dans le LocalStorage */
+    var UserName = localStorage.getItem('UserName');
+    var UserFavorites = localStorage.getItem('UserFavorites');
+
+    if (UserName != null) {
+        document.querySelector("#Name").innerHTML = UserName;
         favoritesListInterfaceGenerator();
         favoritesGenerator();
     } 
@@ -92,9 +122,6 @@ function favoritesGenerator(){
 		if (this.readyState == 4 && this.status == 200) {
         }
     };
-    
-
-	
 
 	/* Récupère le nom entrer par utilisateur */
     var username = localStorage.getItem('UserName');
@@ -166,6 +193,7 @@ function deleteUser() {
     var UserDelete = document.getElementById("UserDelete").value;
 
     if (UserDelete != "") {
+        startLoading();
         xhttp.open("GET", urlAPI + "/delete/" + UserDelete, true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send();
@@ -176,7 +204,7 @@ function deleteUser() {
 
             if (response == 0) {
                 alert("Succès : L'utilisateur '" + UserDelete + "' a bien été supprimé de la bdd.");
-                document.location.href = "dicoloco_connexion.html";
+                logout();
             } else if (response == 1) {
                 alert("Erreur : L'utilisateur '" + UserDelete + "' n'a pas été supprimé de la bdd !");
             } else if (response == 2) {
@@ -185,6 +213,7 @@ function deleteUser() {
                 alert("Erreur : La fonctionnalité Supprimer rencontre actuellement un problème technique, Veuillez nous contacter !");
             }
         }
+        endLoading();
     } else {
         alert("Suppression du compte utilisateur : Veuillez entrer votre pseudo")
     }

@@ -14,6 +14,7 @@ function registerAction() { 
     var username = document.getElementById("registerUser").value;
 
 	if (username != "") {
+		startLoading();
 		/* Envoi de la requete HTTP */
 		xhttp.open("GET", urlAPI + "/create/" +username, true);
 		xhttp.responseType = 'json';
@@ -29,6 +30,7 @@ function registerAction() { 
 	        	alert("Erreur : Compte utilisateur déjà existant ! Veuillez entrer un autre nom.");
 	        }
 	    }
+	    endLoading();
 	} else {
 		alert("Inscription : Veuillez entrer un nom d'utilisateur");
 	}

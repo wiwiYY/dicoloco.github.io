@@ -87,13 +87,15 @@
                                 <h2 class="font-weight-light">Mot à ajouter</h2>
                                 <div class="form-group">
                                     <label for="Mot">Mot</label>
-                                    <input id="nameAdd" type="text" name="motAdd" class="form-control" placeholder="Mot à ajouter">
+                                    <img src="../img/icon_help.svg.png" width=22 height=22 data-toggle="tooltip" data-placement="right" title=
+                                    "Consigne : La première lettre en majuscule"/>
+                                    <input id="nameAdd" type="text" name="motAdd" class="form-control" placeholder="exemple : Hibou">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="definition">Definition(s) à ajouter</label>
-                                    <img src="../img/icon_help.svg.png" width=30 height=30 data-toggle="tooltip" data-placement="right" title=
-                                    "Pas de '_' dans les definitions"/>
+                                    <label for="definition">Définition(s) à ajouter</label>
+                                    <img src="../img/icon_help.svg.png" width=22 height=22 data-toggle="tooltip" data-placement="right" title=
+                                    "Consigne : Pas de '_' dans les definitions"/>
                                     <textarea class="form-control" id="definition" rows="3"></textarea><br>
                                     <button type="button" class="btn btn-outline-secondary" id="addDef">Ajouter</button>
                                     <div id="defList"></div>
@@ -102,8 +104,8 @@
                                 
                                 <div class="form-group">
                                     <label for="synonyme">Synonyme(s) à ajouter</label>
-                                    <img src="../img/icon_help.svg.png" width=30 height=30 data-toggle="tooltip" data-placement="right" title=
-                                    "Pas de '_' dans les synonymes"/>
+                                    <img src="../img/icon_help.svg.png" width=22 height=22 data-toggle="tooltip" data-placement="right" title=
+                                    "Consigne : Pas de '_' dans les synonymes"/>
                                     <textarea class="form-control" id="synonym" rows="3"></textarea><br>
                                     <button type="button" class="btn btn-outline-secondary" id="addSyn">Ajouter</button>
                                     <div id="synList"></div>
@@ -132,12 +134,13 @@
                                 <div class="form-group">
                                     <label for="Type">Langue</label>
                                     <select class="custom-select" id="languageAdd" name="typeAdd">
-                                        <option value="fr">Français</option>
                                         <option value="en">Anglais</option>
+                                        <option value="fr">Français</option>
                                     </select>
                                 </div>
-                                <!-- méthode pour ajouter un mot à la bdd -->
-                                <button onclick="createWord()" type="button" class="btn btn-success center-block">Ajouter le mot</button>
+                                <div class="text-center">
+                                    <button onclick="createWord()" type="button" class="btn btn-success center-block">Ajouter le mot</button>
+                                </div>
                             </div>
 
                             <!-- Ajouter une liste de mot-->
@@ -148,19 +151,20 @@
                                         <label for="FichierAdd">Fichier JSON</label>
                                         <!-- tooltips pour le format JSON-->
                                         <!-- le l'exemple n'est pas indenté en raison de l'affichage sur la page-->
-                                        <img src="../img/icon_help.svg.png" width=30 height=30 data-toggle="tooltip" data-placement="right" title=
-'JSON : [{
+                                        <img src="../img/icon_help.svg.png" width=22 height=22 data-toggle="tooltip" data-placement="right" title=
+'Modèle de structure pour le fichier JSON : 
+ [{
     "name": "hibou",
     "definitions": ["rapace nocturne", "Homme qui fuit la société"],
     "gender": "masculin",
     "category": "nom",
     "synonyms": ["duc","Grand-duc"],
     "language": "fr"
-}];
+ }];
 
-CSV : name,definitions/0,definitions/1,gender,category,language
-TestCSV,Nom : mot fr,testDef,gender,category,fr
-TestCSV1,Nom : mot fr 2,,gender,category,fr
+ Modèle de structure pour le fichier CSV : name,definitions/0,definitions/1,synonyms/0,synonyms/1,gender,category,language
+ Manger,Action de manger,se nourrir,assimiler,ingerer,,verb,fr (exemple sans genre)
+ Dormir,Action de dormir,,se reposer,,,verb,fr (exemple sans definitions/1, synonyms/1 et pas de genre)
 '/>
                                         <br><br>
                                         <label for="Type">Type de fichier</label>
@@ -170,10 +174,12 @@ TestCSV1,Nom : mot fr 2,,gender,category,fr
                                         </select><br><br>
                                         <input type="file" class="form-control-file" id="inputFile"><br>
                                     </div>
-                                    <button onclick="addList()" type="button" class="btn btn-success text-center">Ajouter la liste</button>
+                                    <div class="text-center">
+                                        <button onclick="addList()" type="button" class="btn btn-success text-center">Ajouter la liste</button><br><br>
+                                    </div>
                                 </div>
 
-                                <hr><br>
+                                <hr><br><br>
 
                                 <h2 class="font-weight-light">Mot à supprimer</h2>
                                 <!-- Supprimer un mot-->
@@ -187,7 +193,9 @@ TestCSV1,Nom : mot fr 2,,gender,category,fr
                                     </select><br>
                                     <!-- méthode pour supprimer un mot à la bdd -->
                                 </div>
-                                <button onclick="deleteWord() " onclick="" type="SupprimerMot" class="btn btn-danger center-block" style="float: none;">Supprimer le mot</button>            
+                                <div class="text-center">
+                                    <button onclick="deleteWord() " onclick="" type="SupprimerMot" class="btn btn-danger center-block" style="float: none;">Supprimer le mot</button>   
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-12 text-center">
