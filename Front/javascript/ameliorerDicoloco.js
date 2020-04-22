@@ -1,5 +1,5 @@
 //lien url vers l'API du Springboot
-var urlAPI = "http://localhost:8080";
+var urlAPI = "https://dicoloco.cfapps.io/";
 
 /* Fonction pour créer un nouveau mot dans le dictionnaire */
 function createWord() {
@@ -53,7 +53,7 @@ function createWord() {
 
         result.push(obj);
         
-        xhttp.open("POST", "http://localhost:8080/word/listWords", true);
+        xhttp.open("POST", urlAPI + "/word/listWords", true);
         xhttp.setRequestHeader("content-type", "application/json;charset=UTF-8");
         xhttp.send(JSON.stringify(result));
        
@@ -321,7 +321,7 @@ function addListBdd() {
             alert(JSON.stringify(result));
 
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://localhost:8080/word/listWordsFr", true);
+            xhr.open("POST", urlAPI + "/word/listWordsFr", true);
             xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
            
         xhr.send(JSON.stringify(result));   
