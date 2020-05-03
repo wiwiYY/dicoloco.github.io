@@ -1,5 +1,5 @@
 //lien url vers l'API du Springboot
-var urlAPI = "http://dicolocodictionary.cfapps.io/";
+var urlAPI = "https://dicolocodictionary.cfapps.io/";
 
 /**
  * Ajout d'un mot dans la liste des synonymes
