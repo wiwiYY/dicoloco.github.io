@@ -1,7 +1,7 @@
 /* Variable globale pour incrémenter le nb d'élément d'une liste pour aider à créé les balises html*/
 let numSyn = 0;
 //lien url vers l'API du Springboot
-var urlAPI = "https://dicoloco.cfapps.io/";
+var urlAPI = "http://localhost:8080";
 var nbLangue = 1;
 /**
  * Recherche un mot
@@ -13,7 +13,6 @@ function searchWord() {
     var name = document.getElementById("name").value;
     var language = document.getElementById("languageDico").value;
     localStorage.setItem('Language', language);
-    //TODO 
     localStorage.setItem('WordName', name);
 
     if (name != "") {
@@ -271,7 +270,16 @@ function createTraductionList(numTrad, word) {
     var li = document.createElement('li');
     ul.appendChild(li);
     li.innerHTML = ` <button class="btn btn-outline-secondary btn-sm" id="tradToSearch` + numTrad + `" class="className3" onClick="searchWord5(` + numTrad + `)" >`+word['name']+` | `+word['language']+`</button>`;
+}
 
+/**
+ * Générer un message lorsqu'il n'y a pas de traduction
+ */
+function createNoTraductionList() {
+    var ul = document.getElementById('wordTraduction');
+    var li = document.createElement('div');
+    ul.appendChild(li);
+    li.innerHTML = `<p>Aucune traduction disponible pour ce mot</p>`;
 }
 
 /**
@@ -415,8 +423,6 @@ function generateHtml(jsonObj ) {
             }
             // ajout de l'élément
             createSynonymListModal(mot);
-
-            /* document.getElementById('synonymeNumModal' + i).textContent = mot; //inneHTML ou textContent */
         }
     }
 
@@ -571,7 +577,6 @@ function defNameGenerator() {
                 }
             }
             if(exist){
-                /* generateButtonFavorite.innerHTML += `<button type="button" onclick="deleteFavoris()" class="btn btn-warning">enlever des favoris</button>`; */
                 generateButtonFavorite.innerHTML += `<a id="deleteFavoris" onclick="deleteFavoris()">
                 <!--généré par searchWord.js -->
                 <img src="../img/fav_icon_3.png" width="40px" height="40px" alt="" onmouseover="this.src='../img/fav_icon_1.png';" onmouseout="this.src='../img/fav_icon_3.png';" 
@@ -579,7 +584,6 @@ function defNameGenerator() {
                 </a>`;
             }
             else{
-                /* generateButtonFavorite.innerHTML += `<button id="favorisAdd" onclick="addingFavoris()" type="button" class="btn btn-outline-warning">ajouter aux favoris</button>`; */
                 generateButtonFavorite.innerHTML += `<a id="favorisAdd" onclick="addingFavoris()">
                 <!--généré par searchWord.js -->
                 <img src="../img/fav_icon_1.png" width="40px" height="40apx" alt="" onmouseover="this.src='../img/fav_icon_3.png';" onmouseout="this.src='../img/fav_icon_1.png';" 
@@ -632,13 +636,11 @@ function generateTraduction(language, nbMot){
     request.onload = function () {
         
         var word = request.response;
-        if(word['name'] == undefined){
-            console.log("le mot est undefined")
+        if(word == null){
+            createNoTraductionList();
         }else{
-            console.log("le mot existe")
             for (var i=0; i<nbMot; i++){  
                 createTraductionList(i , word);
-                // document.getElementById("#traductionNum"+i).innerHTML = ` `+word['name'] +` | `+word['language'];
             }
         }
     }
@@ -646,13 +648,11 @@ function generateTraduction(language, nbMot){
 
 /* Fonction qui redirige sur l'endroit de la page ou il y a la definition  */
 function redirectAncre() {
-    //document.location.href='#ancre';
     window.scroll(0,700);
 }
 
 /* Fonction qui redirige sur l'endroit de la page ou il y a le laoding */
 function redirectAncreLoading() {
-    //document.location.href='#ancre';
     window.scrollTo(0,0);
 }
 

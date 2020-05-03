@@ -1,4 +1,4 @@
-var urlAPI = "https://dicoloco.cfapps.io/";
+var urlAPI = "http://localhost:8080";
 
 //variable pour générer les questions
 var questionD = null;

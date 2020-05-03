@@ -1,5 +1,5 @@
 /* Lien url vers l'API du Springboot */
-var urlAPI = "https://dicoloco.cfapps.io/";
+var urlAPI = "http://localhost:8080";
 
 /* Ajout d'un favoris dans la liste des Favoris d'un user */
 function addingFavoris() {    
