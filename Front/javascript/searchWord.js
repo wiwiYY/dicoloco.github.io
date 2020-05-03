@@ -1,7 +1,7 @@
 /* Variable globale pour incrémenter le nb d'élément d'une liste pour aider à créé les balises html*/
 let numSyn = 0;
 //lien url vers l'API du Springboot
-var urlAPI = "https://dicolocodictionary.cfapps.io/";
+var urlAPI = "https://dicoloco.cfapps.io/";
 var nbLangue = 1;
 /**
  * Recherche un mot
