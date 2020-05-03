@@ -1,5 +1,5 @@
 /* Lien url vers l'API du Springboot */
-var urlAPI = "https://dicolocodictionary.cfapps.io/";
+var urlAPI = "https://dicoloco.cfapps.io/";
 
 /* Fonction main pour la connexion utilisateur */
 function registerAction() { 
