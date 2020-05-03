@@ -1,5 +1,5 @@
 //lien url vers l'API du Springboot
-var urlAPI = "http://localhost:8080";
+var urlAPI = "http://dicolocodictionary.cfapps.io/";
 
 /* Fonction pour créer un nouveau mot dans le dictionnaire */
 function createWord() {
