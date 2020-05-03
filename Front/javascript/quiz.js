@@ -1,4 +1,4 @@
-var urlAPI = "http://dicolocodictionary.cfapps.io/";
+var urlAPI = "https://dicolocodictionary.cfapps.io/";
 
 //variable pour générer les questions
 var questionD = null;
